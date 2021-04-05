@@ -65,5 +65,17 @@
     from t_scenery
     order by sid limit #{count,jdbcType=INTEGER},#{size,jdbcType=INTEGER};
   </select>
+  <select id="findBySids"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_scenery
+    where sid in
+   <foreach collection="sids" index="index" item="sid" separator="," open="(" close=")">
+     #{sid,jdbcType=VARCHAR}
+   </foreach>
+
+  </select>
 
 </mapper>

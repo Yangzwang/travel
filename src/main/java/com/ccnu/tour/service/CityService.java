@@ -9,4 +9,6 @@ public interface CityService {
     List<City> findByAll();
 
     boolean updateSidById(Integer id,String sid);
+
+    City  findByCityName(String cityName);
 }

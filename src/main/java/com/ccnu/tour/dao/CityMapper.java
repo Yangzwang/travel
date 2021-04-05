@@ -13,5 +13,5 @@ public interface CityMapper {
 
     int updateSidById(Integer id,String sid);
 
-   int  deleteById();
+    City  findByCityName(String cityName);
 }

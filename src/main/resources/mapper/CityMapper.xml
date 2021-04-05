@@ -28,9 +28,11 @@
       sid = #{sid,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="deleteById">
-    delete
+  <select id="findByCityName"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
     from t_city
-    where id = 10001
-  </update>
+    where  city_name=#{cityName,jdbcType=VARCHAR}
+    limit 1
+  </select>
 </mapper>

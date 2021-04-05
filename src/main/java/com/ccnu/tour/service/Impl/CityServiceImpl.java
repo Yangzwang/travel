@@ -27,4 +27,9 @@ public class CityServiceImpl implements CityService {
     public boolean updateSidById(Integer id, String sid) {
         return cityMapper.updateSidById(id,sid)>0;
     }
+
+    @Override
+    public City findByCityName(String cityName) {
+        return cityMapper.findByCityName(cityName);
+    }
 }
