@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ccnu.tour.dao.SceneryMapper">
+  <resultMap id="BaseResultMap" type="com.ccnu.tour.pojo.Scenery">
+    <result column="sid" jdbcType="VARCHAR" property="sid" />
+    <result column="surl" jdbcType="VARCHAR" property="surl" />
+    <result column="ambiguity_sname" jdbcType="VARCHAR" property="ambiguitySname" />
+    <result column="sname" jdbcType="VARCHAR" property="sname" />
+    <result column="parent_sid" jdbcType="VARCHAR" property="parentSid" />
+    <result column="view_count" jdbcType="INTEGER" property="viewCount" />
+    <result column="star" jdbcType="VARCHAR" property="star" />
+    <result column="scene_layer" jdbcType="VARCHAR" property="sceneLayer" />
+    <result column="going_count" jdbcType="INTEGER" property="goingCount" />
+    <result column="gone_count" jdbcType="INTEGER" property="goneCount" />
+    <result column="rating" jdbcType="DOUBLE" property="rating" />
+    <result column="rating_count" jdbcType="INTEGER" property="ratingCount" />
+    <result column="lng" jdbcType="VARCHAR" property="lng" />
+    <result column="lat" jdbcType="VARCHAR" property="lat" />
+    <result column="map_x" jdbcType="VARCHAR" property="mapX" />
+    <result column="map_y" jdbcType="VARCHAR" property="mapY" />
+    <result column="recommend_visit_time" jdbcType="VARCHAR" property="recommendVisitTime" />
+    <result column="abs_desc" jdbcType="LONGVARCHAR" property="absDesc" />
+    <result column="more_desc" jdbcType="LONGVARCHAR" property="moreDesc" />
+    <result column="full_url" jdbcType="LONGVARCHAR" property="fullUrl" />
+    <result column="price_desc" jdbcType="LONGVARCHAR" property="priceDesc" />
+    <result column="open_time_desc" jdbcType="LONGVARCHAR" property="openTimeDesc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sid, surl, ambiguity_sname, sname, parent_sid, view_count, star, scene_layer, going_count, 
+    gone_count, rating, rating_count, lng, lat, map_x, map_y, recommend_visit_time
+  </sql>
+  <sql id="Blob_Column_List">
+    abs_desc, more_desc, full_url, price_desc, open_time_desc
+  </sql>
+  <select id="findBySid"  resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_scenery
+    where sid = #{sid,jdbcType=VARCHAR}
+  </select>
+  <insert id="insert" parameterType="com.ccnu.tour.pojo.Scenery">
+    insert into t_scenery (sid, surl, ambiguity_sname, 
+      sname, parent_sid, view_count, 
+      star, scene_layer, going_count, 
+      gone_count, rating, rating_count, 
+      lng, lat, map_x, map_y, 
+      recommend_visit_time, abs_desc, more_desc, 
+      full_url, price_desc, open_time_desc
+      )
+    values (#{sid,jdbcType=VARCHAR}, #{surl,jdbcType=VARCHAR}, #{ambiguitySname,jdbcType=VARCHAR}, 
+      #{sname,jdbcType=VARCHAR}, #{parentSid,jdbcType=VARCHAR}, #{viewCount,jdbcType=INTEGER}, 
+      #{star,jdbcType=VARCHAR}, #{sceneLayer,jdbcType=VARCHAR}, #{goingCount,jdbcType=INTEGER}, 
+      #{goneCount,jdbcType=INTEGER}, #{rating,jdbcType=DOUBLE}, #{ratingCount,jdbcType=INTEGER}, 
+      #{lng,jdbcType=VARCHAR}, #{lat,jdbcType=VARCHAR}, #{mapX,jdbcType=VARCHAR}, #{mapY,jdbcType=VARCHAR}, 
+      #{recommendVisitTime,jdbcType=VARCHAR}, #{absDesc,jdbcType=LONGVARCHAR}, #{moreDesc,jdbcType=LONGVARCHAR}, 
+      #{fullUrl,jdbcType=LONGVARCHAR}, #{priceDesc,jdbcType=LONGVARCHAR}, #{openTimeDesc,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+
+  <select id="findByCount"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_scenery
+    order by sid limit #{count,jdbcType=INTEGER},#{size,jdbcType=INTEGER};
+  </select>
+
+</mapper>

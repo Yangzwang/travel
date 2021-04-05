@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ccnu.tour.dao.CityMapper">
+  <resultMap id="BaseResultMap" type="com.ccnu.tour.pojo.City">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="city_name" jdbcType="VARCHAR" property="cityName" />
+    <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
+    <result column="sid" jdbcType="VARCHAR" property="sid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, code, city_name, city_code, sid
+  </sql>
+  <insert id="insert" parameterType="com.ccnu.tour.pojo.City">
+    insert into t_city (id, code, city_name, 
+      city_code, sid)
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{cityName,jdbcType=VARCHAR}, 
+      #{cityCode,jdbcType=VARCHAR}, #{sid,jdbcType=VARCHAR})
+  </insert>
+  <select id="findByAll"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_city
+  </select>
+  <update id="updateSidById">
+    update t_city
+    set
+      sid = #{sid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="deleteById">
+    delete
+    from t_city
+    where id = 10001
+  </update>
+</mapper>
