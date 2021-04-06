@@ -18,6 +18,6 @@ public interface SceneryMapper {
 
     List<Scenery> findByCount(Integer count, Integer size);
 
-    List<Scenery> findBySids(@Param("sids") Collection<String> sids);
+    List<Scenery> findBySids(@Param("sid") String sid);
 
 }

@@ -12,7 +12,7 @@ public interface SceneryService {
 
     List<Scenery> findByCount(Integer count, Integer size);
 
-    List<Scenery> findBySids(Collection<String> sids);
+    List<Scenery> findBySids(List<String> sids);
 
 
 

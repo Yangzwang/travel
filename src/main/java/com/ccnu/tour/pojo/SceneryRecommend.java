@@ -5,7 +5,7 @@ import java.util.Date;
 public class SceneryRecommend {
     private Integer id;
 
-    private String sceneryId;
+    private Long sceneryId;
 
     private Integer cityId;
 
@@ -23,12 +23,12 @@ public class SceneryRecommend {
         this.id = id;
     }
 
-    public String getSceneryId() {
+    public Long getSceneryId() {
         return sceneryId;
     }
 
-    public void setSceneryId(String sceneryId) {
-        this.sceneryId = sceneryId == null ? null : sceneryId.trim();
+    public void setSceneryId(Long sceneryId) {
+        this.sceneryId = sceneryId;
     }
 
     public Integer getCityId() {

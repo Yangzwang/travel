@@ -38,7 +38,7 @@
     ,
     <include refid="Blob_Column_List" />
     from t_scenery
-    where sid = #{sid,jdbcType=VARCHAR}
+    where parent_sid = #{sid,jdbcType=VARCHAR} order by view_count desc limit 100
   </select>
   <insert id="insert" parameterType="com.ccnu.tour.pojo.Scenery">
     insert into t_scenery (sid, surl, ambiguity_sname, 
@@ -71,11 +71,7 @@
     ,
     <include refid="Blob_Column_List" />
     from t_scenery
-    where sid in
-   <foreach collection="sids" index="index" item="sid" separator="," open="(" close=")">
-     #{sid,jdbcType=VARCHAR}
-   </foreach>
-
+    where sid = #{sid,jdbcType=VARCHAR}
   </select>
 
 </mapper>

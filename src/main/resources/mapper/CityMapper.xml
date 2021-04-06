@@ -3,19 +3,19 @@
 <mapper namespace="com.ccnu.tour.dao.CityMapper">
   <resultMap id="BaseResultMap" type="com.ccnu.tour.pojo.City">
     <result column="id" jdbcType="INTEGER" property="id" />
-    <result column="code" jdbcType="VARCHAR" property="code" />
-    <result column="city_name" jdbcType="VARCHAR" property="cityName" />
-    <result column="city_code" jdbcType="VARCHAR" property="cityCode" />
-    <result column="sid" jdbcType="VARCHAR" property="sid" />
+    <result column="city_name" jdbcType="VARCHAR" property="name" />
+    <result column="ad_code" jdbcType="VARCHAR" property="adCode" />
+    <result column="province_id" jdbcType="VARCHAR" property="provinceId" />
+
   </resultMap>
   <sql id="Base_Column_List">
-    id, code, city_name, city_code, sid
+    id, city_name, ad_code,province_id
   </sql>
   <insert id="insert" parameterType="com.ccnu.tour.pojo.City">
-    insert into t_city (id, code, city_name, 
-      city_code, sid)
-    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{cityName,jdbcType=VARCHAR}, 
-      #{cityCode,jdbcType=VARCHAR}, #{sid,jdbcType=VARCHAR})
+    insert into t_city (city_name,
+      ad_code,province_id)
+    values (#{name,jdbcType=VARCHAR},
+      #{adCode,jdbcType=VARCHAR},#{provinceId,jdbcType=INTEGER})
   </insert>
   <select id="findByAll"  resultMap="BaseResultMap">
     select

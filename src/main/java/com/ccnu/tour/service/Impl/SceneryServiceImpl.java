@@ -32,7 +32,7 @@ public class SceneryServiceImpl implements SceneryService {
     }
 
     @Override
-    public List<Scenery> findBySids(Collection<String> sids) {
-        return sceneryMapper.findBySids(sids);
+    public List<Scenery> findBySids(List<String> sids) {
+        return sceneryMapper.findBySids(sids.get(0));
     }
 }

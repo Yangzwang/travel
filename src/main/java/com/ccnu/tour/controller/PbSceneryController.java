@@ -2,14 +2,8 @@ package com.ccnu.tour.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.ccnu.tour.manager.SceneryManager;
-import com.ccnu.tour.pojo.City;
-import com.ccnu.tour.pojo.Rotate;
-import com.ccnu.tour.pojo.Scenery;
-import com.ccnu.tour.pojo.SceneryRecommend;
-import com.ccnu.tour.service.CityService;
-import com.ccnu.tour.service.SceneryRecommendService;
-import com.ccnu.tour.service.SceneryService;
-import com.ccnu.tour.service.TourService;
+import com.ccnu.tour.pojo.*;
+import com.ccnu.tour.service.*;
 import com.ccnu.tour.util.CommonUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,7 +27,7 @@ public class PbSceneryController {
     @Autowired
     private SceneryRecommendService sceneryRecommendService;
     @Autowired
-    private SceneryService sceneryService;
+    private SceneryInfoService sceneryInfoService;
 
     private static Logger log = LoggerFactory.getLogger(PbSceneryController.class);
 
@@ -52,8 +46,8 @@ public class PbSceneryController {
         CommonUtil.hasAllRequired(requestJson, "city_name");
         City city=cityService.findByCityName(requestJson.getString("city_name"));
         List<SceneryRecommend> sceneryRecommends= sceneryRecommendService.findByCityId(city.getId());
-        List<String>  sceneryIds= sceneryRecommends.stream().map(SceneryRecommend::getSceneryId).collect(Collectors.toList());
-        List<Scenery>  sceneries= sceneryService.findBySids(sceneryIds);
+        List<Long>  sceneryIds= sceneryRecommends.stream().map(SceneryRecommend::getSceneryId).collect(Collectors.toList());
+        List<SceneryInfo>  sceneries= sceneryInfoService.findByIds(sceneryIds);
         return CommonUtil.successJson(sceneries);
     }
 }

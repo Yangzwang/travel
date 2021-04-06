@@ -3,13 +3,12 @@ package com.ccnu.tour.pojo;
 public class City {
     private Integer id;
 
-    private String code;
+    private String name;
 
-    private String cityName;
+    private String adCode;
 
-    private String cityCode;
+    private Integer provinceId;
 
-    private String sid;
 
     public Integer getId() {
         return id;
@@ -19,35 +18,27 @@ public class City {
         this.id = id;
     }
 
-    public String getCode() {
-        return code;
+    public String getName() {
+        return name;
     }
 
-    public void setCode(String code) {
-        this.code = code == null ? null : code.trim();
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getCityName() {
-        return cityName;
+    public String getAdCode() {
+        return adCode;
     }
 
-    public void setCityName(String cityName) {
-        this.cityName = cityName == null ? null : cityName.trim();
+    public void setAdCode(String adCode) {
+        this.adCode = adCode;
     }
 
-    public String getCityCode() {
-        return cityCode;
+    public Integer getProvinceId() {
+        return provinceId;
     }
 
-    public void setCityCode(String cityCode) {
-        this.cityCode = cityCode == null ? null : cityCode.trim();
-    }
-
-    public String getSid() {
-        return sid;
-    }
-
-    public void setSid(String sid) {
-        this.sid = sid == null ? null : sid.trim();
+    public void setProvinceId(Integer provinceId) {
+        this.provinceId = provinceId;
     }
 }

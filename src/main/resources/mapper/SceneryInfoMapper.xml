@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ccnu.tour.dao.SceneryInfoMapper">
+  <resultMap id="BaseResultMap" type="com.ccnu.tour.pojo.SceneryInfo">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="sname" jdbcType="VARCHAR" property="sname" />
+    <result column="spell" jdbcType="VARCHAR" property="spell" />
+    <result column="ambiguity_sname" jdbcType="VARCHAR" property="ambiguitySname" />
+    <result column="city_id" jdbcType="INTEGER" property="cityId" />
+    <result column="view_count" jdbcType="INTEGER" property="viewCount" />
+    <result column="star" jdbcType="INTEGER" property="star" />
+    <result column="scene_layer" jdbcType="INTEGER" property="sceneLayer" />
+    <result column="going_count" jdbcType="INTEGER" property="goingCount" />
+    <result column="gone_count" jdbcType="INTEGER" property="goneCount" />
+    <result column="rating" jdbcType="DOUBLE" property="rating" />
+    <result column="rating_count" jdbcType="INTEGER" property="ratingCount" />
+    <result column="abs_desc" jdbcType="VARCHAR" property="absDesc" />
+    <result column="more_desc" jdbcType="VARCHAR" property="moreDesc" />
+    <result column="full_url" jdbcType="VARCHAR" property="fullUrl" />
+    <result column="lag" jdbcType="DOUBLE" property="lag" />
+    <result column="lat" jdbcType="DOUBLE" property="lat" />
+    <result column="recommend_visit_time" jdbcType="VARCHAR" property="recommendVisitTime" />
+    <result column="price_desc" jdbcType="DOUBLE" property="priceDesc" />
+    <result column="open_time_desc" jdbcType="VARCHAR" property="openTimeDesc" />
+    <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, sname, spell, ambiguity_sname, city_id, view_count, star, scene_layer, going_count, 
+    gone_count, rating, rating_count, abs_desc, more_desc, full_url, lag, lat, recommend_visit_time, 
+    price_desc, open_time_desc, is_deleted,create_time,update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_scenery_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <insert id="insert" parameterType="com.ccnu.tour.pojo.SceneryInfo">
+    insert into t_scenery_info (id, sname, spell, 
+      ambiguity_sname, city_id,
+      star, scene_layer, going_count, 
+      gone_count, rating, rating_count, 
+      abs_desc, more_desc, full_url, 
+      lag, lat, recommend_visit_time, 
+      price_desc, open_time_desc, is_deleted
+      )
+    values (#{id,jdbcType=BIGINT}, #{sname,jdbcType=VARCHAR}, #{spell,jdbcType=VARCHAR}, 
+      #{ambiguitySname,jdbcType=VARCHAR}, #{cityId,jdbcType=INTEGER},
+      #{star,jdbcType=INTEGER}, #{sceneLayer,jdbcType=INTEGER}, #{goingCount,jdbcType=INTEGER}, 
+      #{goneCount,jdbcType=INTEGER}, #{rating,jdbcType=DOUBLE}, #{ratingCount,jdbcType=INTEGER}, 
+      #{absDesc,jdbcType=VARCHAR}, #{moreDesc,jdbcType=VARCHAR}, #{fullUrl,jdbcType=VARCHAR}, 
+      #{lag,jdbcType=DOUBLE}, #{lat,jdbcType=DOUBLE}, #{recommendVisitTime,jdbcType=VARCHAR}, 
+      #{priceDesc,jdbcType=DOUBLE}, #{openTimeDesc,jdbcType=VARCHAR}, 0
+      )
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="com.ccnu.tour.pojo.SceneryInfo">
+    update t_scenery_info
+    <set>
+      <if test="sname != null">
+        sname = #{sname,jdbcType=VARCHAR},
+      </if>
+      <if test="spell != null">
+        spell = #{spell,jdbcType=VARCHAR},
+      </if>
+      <if test="ambiguitySname != null">
+        ambiguity_sname = #{ambiguitySname,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null">
+        city_id = #{cityId,jdbcType=INTEGER},
+      </if>
+      <if test="viewCount != null">
+        view_count = #{viewCount,jdbcType=INTEGER},
+      </if>
+      <if test="star != null">
+        star = #{star,jdbcType=INTEGER},
+      </if>
+      <if test="sceneLayer != null">
+        scene_layer = #{sceneLayer,jdbcType=INTEGER},
+      </if>
+      <if test="goingCount != null">
+        going_count = #{goingCount,jdbcType=INTEGER},
+      </if>
+      <if test="goneCount != null">
+        gone_count = #{goneCount,jdbcType=INTEGER},
+      </if>
+      <if test="rating != null">
+        rating = #{rating,jdbcType=DOUBLE},
+      </if>
+      <if test="ratingCount != null">
+        rating_count = #{ratingCount,jdbcType=INTEGER},
+      </if>
+      <if test="absDesc != null">
+        abs_desc = #{absDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="moreDesc != null">
+        more_desc = #{moreDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="fullUrl != null">
+        full_url = #{fullUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="lag != null">
+        lag = #{lag,jdbcType=DOUBLE},
+      </if>
+      <if test="lat != null">
+        lat = #{lat,jdbcType=DOUBLE},
+      </if>
+      <if test="recommendVisitTime != null">
+        recommend_visit_time = #{recommendVisitTime,jdbcType=VARCHAR},
+      </if>
+      <if test="priceDesc != null">
+        price_desc = #{priceDesc,jdbcType=DOUBLE},
+      </if>
+      <if test="openTimeDesc != null">
+        open_time_desc = #{openTimeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="isDeleted != null">
+        is_deleted = #{isDeleted,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="findByIds"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_scenery_info
+    where id  in
+    <foreach collection="ids" item="id" index="index" open="(" separator="," close=")" >
+    #{id,jdbcType=BIGINT}
+    </foreach>
+  </select>
+</mapper>

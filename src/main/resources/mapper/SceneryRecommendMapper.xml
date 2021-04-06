@@ -3,7 +3,7 @@
 <mapper namespace="com.ccnu.tour.dao.SceneryRecommendMapper">
   <resultMap id="BaseResultMap" type="com.ccnu.tour.pojo.SceneryRecommend">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="scenery_id" jdbcType="VARCHAR" property="sceneryId" />
+    <result column="scenery_id" jdbcType="BIGINT" property="sceneryId" />
     <result column="city_id" jdbcType="INTEGER" property="cityId" />
     <result column="is_deleted" jdbcType="INTEGER" property="isDeleted" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
@@ -22,7 +22,7 @@
     insert into t_scenery_recommend (id, scenery_id, city_id, 
       is_deleted, create_time, update_time
       )
-    values (#{id,jdbcType=INTEGER}, #{sceneryId,jdbcType=VARCHAR}, #{cityId,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{sceneryId,jdbcType=BIGINT}, #{cityId,jdbcType=INTEGER},
       #{isDeleted,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
       )
   </insert>
