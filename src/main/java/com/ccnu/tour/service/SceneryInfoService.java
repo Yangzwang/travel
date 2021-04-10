@@ -14,5 +14,10 @@ public interface SceneryInfoService {
 
     List<SceneryInfo> findByIds(Collection<Long> ids);
 
+    List<SceneryInfo> findByCount(Integer cityId,Integer count,Integer size);
+
+    int countByCityId(Integer cityId);
+
+
 
 }

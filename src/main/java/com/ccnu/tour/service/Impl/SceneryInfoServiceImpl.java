@@ -32,4 +32,14 @@ public class SceneryInfoServiceImpl implements SceneryInfoService {
     public List<SceneryInfo> findByIds(Collection<Long> ids) {
         return mapper.findByIds(ids);
     }
+
+    @Override
+    public List<SceneryInfo> findByCount(Integer cityId, Integer count, Integer size) {
+        return mapper.findByCount(cityId,count,size);
+    }
+
+    @Override
+    public int countByCityId(Integer cityId) {
+        return mapper.countByCityId(cityId);
+    }
 }

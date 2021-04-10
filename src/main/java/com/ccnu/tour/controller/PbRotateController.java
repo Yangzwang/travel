@@ -40,7 +40,7 @@ public class PbRotateController {
     @ResponseBody
     public JSONObject getList(@RequestBody JSONObject requestJson, HttpServletRequest request) {
         CommonUtil.hasAllRequired(requestJson, "city_name");
-        City city=cityService.findByCityName(requestJson.getString("city_name"));
+        City city = cityService.findByCityName(requestJson.getString("city_name"));
         List<Rotate> rotates = rotateService.finByCityId(city.getId());
         for (Rotate rotate : rotates) {
             rotate.setImgUrl(imgUrl+rotate.getImgUrl());

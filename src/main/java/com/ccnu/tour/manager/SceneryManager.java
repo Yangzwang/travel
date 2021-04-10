@@ -79,27 +79,10 @@ public class SceneryManager {
 
     }
 
-    public void sceneryList() {
-        int count = 0;
-        List<City> cityList = cityService.findByAll();
-        while (true) {
-            List<Scenery> sceneryList = sceneryService.findByCount(count * 1000, 1000);
-            if (sceneryList.size() < 5) {
-                break;
-            }
-            for (Scenery scenery : sceneryList) {
-                for (City city : cityList) {
-                    if (city.getName().equals(scenery.getSname())) {
-                        if (cityService.updateSidById(city.getId(), scenery.getSid())) {
-                            log.info("update city succeed cityId:{}", city.getId());
-                        }
-                    }
-                }
-            }
-            count++;
-        }
-
-
+    public List<SceneryInfo> sceneryList(String cityName, Integer pageNum, Integer pageSize) {
+        City city = cityService.findByCityName(cityName);
+        List<SceneryInfo> sceneryInfos = sceneryInfoService.findByCount(city.getId(), pageNum * pageSize, pageSize);
+       return sceneryInfos;
     }
 
 }

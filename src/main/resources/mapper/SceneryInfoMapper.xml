@@ -22,6 +22,7 @@
     <result column="recommend_visit_time" jdbcType="VARCHAR" property="recommendVisitTime" />
     <result column="price_desc" jdbcType="DOUBLE" property="priceDesc" />
     <result column="open_time_desc" jdbcType="VARCHAR" property="openTimeDesc" />
+    <result column="scenery_address" jdbcType="VARCHAR" property="sceneryAddress" />
     <result column="is_deleted" jdbcType="TINYINT" property="isDeleted" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
@@ -29,7 +30,7 @@
   <sql id="Base_Column_List">
     id, sname, spell, ambiguity_sname, city_id, view_count, star, scene_layer, going_count, 
     gone_count, rating, rating_count, abs_desc, more_desc, full_url, lag, lat, recommend_visit_time, 
-    price_desc, open_time_desc, is_deleted,create_time,update_time
+    price_desc, open_time_desc,scenery_address, is_deleted,create_time,update_time
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
@@ -44,7 +45,7 @@
       gone_count, rating, rating_count, 
       abs_desc, more_desc, full_url, 
       lag, lat, recommend_visit_time, 
-      price_desc, open_time_desc, is_deleted
+      price_desc, open_time_desc, scenery_address,is_deleted
       )
     values (#{id,jdbcType=BIGINT}, #{sname,jdbcType=VARCHAR}, #{spell,jdbcType=VARCHAR}, 
       #{ambiguitySname,jdbcType=VARCHAR}, #{cityId,jdbcType=INTEGER},
@@ -52,7 +53,7 @@
       #{goneCount,jdbcType=INTEGER}, #{rating,jdbcType=DOUBLE}, #{ratingCount,jdbcType=INTEGER}, 
       #{absDesc,jdbcType=VARCHAR}, #{moreDesc,jdbcType=VARCHAR}, #{fullUrl,jdbcType=VARCHAR}, 
       #{lag,jdbcType=DOUBLE}, #{lat,jdbcType=DOUBLE}, #{recommendVisitTime,jdbcType=VARCHAR}, 
-      #{priceDesc,jdbcType=DOUBLE}, #{openTimeDesc,jdbcType=VARCHAR}, 0
+      #{priceDesc,jdbcType=DOUBLE}, #{openTimeDesc,jdbcType=VARCHAR},#{sceneryAddress,jdbcType=VARCHAR}, 0
       )
   </insert>
 
@@ -128,8 +129,27 @@
     <include refid="Base_Column_List" />
     from t_scenery_info
     where id  in
-    <foreach collection="ids" item="id" index="index" open="(" separator="," close=")" >
-    #{id,jdbcType=BIGINT}
+    <foreach item="id" index="index" collection="ids" open="(" separator="," close=")">
+      #{id,jdbcType=BIGINT}
     </foreach>
+  </select>
+  <select id="findByCount"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_scenery_info
+    where city_id=#{cityId,jdbcType=INTEGER}
+    order by id limit #{count,jdbcType=INTEGER},#{size,jdbcType=INTEGER};
+  </select>
+  <select id="countByCityId"  resultMap="BaseResultMap">
+    select
+    count(1)
+    from t_scenery_info
+    where city_id=#{cityId,jdbcType=INTEGER};
+  </select>
+  <select id="findById"  resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from t_scenery_info
+    where id=#{id,jdbcType=BIGINT};
   </select>
 </mapper>

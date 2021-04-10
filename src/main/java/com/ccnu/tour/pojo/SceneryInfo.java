@@ -43,6 +43,8 @@ public class SceneryInfo {
 
     private String openTimeDesc;
 
+    private String sceneryAddress;
+
     private Boolean isDeleted;
 
     private Date createTime;
@@ -209,6 +211,14 @@ public class SceneryInfo {
         this.openTimeDesc = openTimeDesc == null ? null : openTimeDesc.trim();
     }
 
+    public String getSceneryAddress() {
+        return sceneryAddress;
+    }
+
+    public void setSceneryAddress(String sceneryAddress) {
+        this.sceneryAddress = sceneryAddress;
+    }
+
     public Boolean getDeleted() {
         return isDeleted;
     }
@@ -216,6 +226,7 @@ public class SceneryInfo {
     public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
     }
+
 
     public Date getCreateTime() {
         return createTime;
